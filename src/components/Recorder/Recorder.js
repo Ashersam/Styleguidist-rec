@@ -4,8 +4,8 @@ import { Typography, AppBar } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Mic from '@material-ui/icons/Mic';
-import { ReactMicPlus } from 'react-mic-plus';
+// import Mic from '@material-ui/icons/Mic';
+// import { ReactMicPlus } from 'react-mic-plus';
 // import { StoreContext } from "../../context/StoreContext";
 
 const useStyles = makeStyles(theme => ({
@@ -30,28 +30,28 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Recorder({
-    toggleOpen,
-    record }) {
+    toggleOpen
+}) {
     const classes = useStyles();
     // const { toggleOpen, saveRecord } = useContext(StoreContext);
     // const { record } = useContext(StoreContext)
 
-    function onStop(recordedBlob) {
-        // saveRecord(recordedBlob)
-        console.log(recordedBlob)
-    }
+    // function onStop(recordedBlob) {
+    //     saveRecord(recordedBlob)
+    // }
 
     return (
         <div>
-            <AppBar position="static" className={classes.appBar}>
-                <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" className={classes.title}>
-                        Recorder
+            {toggleOpen && (
+                <AppBar position="static" className={classes.appBar}>
+                    <Toolbar>
+                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" className={classes.title}>
+                            Recorder
                     </Typography>
-                    <div>
+                        {/* <div>
                         <ReactMicPlus
                             className={classes.soundWave}
                             record={record}
@@ -72,9 +72,10 @@ export default function Recorder({
                         >
                             <Mic />
                         </IconButton>
-                    </div>
-                </Toolbar>
-            </AppBar>
+                    </div> */}
+                    </Toolbar>
+                </AppBar>
+            )}
         </div>
     );
 }
