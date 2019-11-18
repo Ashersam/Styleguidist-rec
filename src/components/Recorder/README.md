@@ -1,5 +1,5 @@
 #### Recorder
 ```js
 
-<Recorder toggleOpen={true}/>
+<Recorder />
 ```

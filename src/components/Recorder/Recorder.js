@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import BottomBar from '../BottomBar/index'
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, AppBar } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-// import Mic from '@material-ui/icons/Mic';
-// import { ReactMicPlus } from 'react-mic-plus';
+import Mic from '@material-ui/icons/Mic';
+import { ReactMicPlus } from 'react-mic-plus';
 // import { StoreContext } from "../../context/StoreContext";
 
 const useStyles = makeStyles(theme => ({
@@ -30,52 +31,48 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Recorder({
-    toggleOpen
-}) {
+    toggleOpen,
+    record }) {
     const classes = useStyles();
     // const { toggleOpen, saveRecord } = useContext(StoreContext);
     // const { record } = useContext(StoreContext)
 
-    // function onStop(recordedBlob) {
-    //     saveRecord(recordedBlob)
-    // }
+    const [micOpen, setmicOpen] = useState(false);
+
+    function onStop(recordedBlob) {
+        // saveRecord(recordedBlob)
+        console.log(recordedBlob)
+    }
+
+    function OpenRecorder() {
+        setmicOpen(!micOpen)
+    }
+    const defaultBottomBar = (
+        <BottomBar isOpen={micOpen} />
+    )
 
     return (
         <div>
-            {toggleOpen && (
-                <AppBar position="static" className={classes.appBar}>
-                    <Toolbar>
-                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="h6" className={classes.title}>
-                            Recorder
+            <AppBar position="static" className={classes.appBar}>
+                <Toolbar>
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" className={classes.title}>
+                        Recorder
                     </Typography>
-                        {/* <div>
-                        <ReactMicPlus
-                            className={classes.soundWave}
-                            record={record}
-                            onStop={onStop}
-                            strokeColor="#000000"
-                            backgroundColor="#3F5274"
-                            nonstop={true}
-                            duration={5}
-                        />
-                    </div>
-                    <div>
-                        <IconButton
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={toggleOpen}
-                            color="inherit"
-                        >
-                            <Mic />
-                        </IconButton>
-                    </div> */}
-                    </Toolbar>
-                </AppBar>
-            )}
+                    <IconButton
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        onClick={OpenRecorder}
+                        color="inherit"
+                    >
+                        <Mic />
+                    </IconButton>
+                </Toolbar>
+            </AppBar>
+            {defaultBottomBar}
         </div>
     );
 }

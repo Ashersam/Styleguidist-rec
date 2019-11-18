@@ -16,6 +16,8 @@ let sections = [
     components: () => {
       const componentNames = [
         'Recorder',
+        'BottomBar',
+        'AudioPlayer'
         // 'hello-name',
         // 'hello-names-ul',
         // 'hello-names-list',
